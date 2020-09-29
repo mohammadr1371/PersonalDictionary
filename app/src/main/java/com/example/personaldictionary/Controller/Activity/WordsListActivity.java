@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -20,14 +21,21 @@ public class WordsListActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.single_fragment_activity);
+        setContentView(R.layout.fragment_starter);
+        Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                setContentView(R.layout.single_fragment_activity);
 
-        FragmentManager fragmentManager = getSupportFragmentManager();
-        Fragment fragment = fragmentManager.findFragmentById(R.id.single_fragment_activity);
-        if(fragment == null){
-            fragmentManager.beginTransaction()
-                    .add(R.id.single_fragment_activity, WordsListFragment.newInstance())
-                    .commit();
-        }
+                FragmentManager fragmentManager = getSupportFragmentManager();
+                Fragment fragment = fragmentManager.findFragmentById(R.id.single_fragment_activity);
+                if (fragment == null) {
+                    fragmentManager.beginTransaction()
+                            .add(R.id.single_fragment_activity, WordsListFragment.newInstance())
+                            .commit();
+                }
+            }
+        },5000);
     }
 }
