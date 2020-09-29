@@ -36,6 +36,8 @@ public class WordsListFragment extends Fragment {
     public static final String ADD_DIALOG_FRAGMENT = "add dialog fragment";
     public static final String SEARCH_DIALOG_FRAGMENT = "search dialog fragment";
     public static final int ADD_DIALOG_FRAGMENT_REQUEST_CODE = 1;
+    public static final int EDIT_DIALOG_FRAGMENT_REQUEST_CODE = 2;
+    public static final String EDIT_DIALOG_FRAGMENT = "edit dialog fragment";
     private iWordDatabaseDao mIWordDatabaseDao;
     private RecyclerView mRecyclerView;
 
@@ -87,7 +89,12 @@ public class WordsListFragment extends Fragment {
             return;
         }
 
-        if(requestCode == WordsListFragment.ADD_DIALOG_FRAGMENT_REQUEST_CODE){
+        if(requestCode == ADD_DIALOG_FRAGMENT_REQUEST_CODE){
+            updateList();
+            return;
+        }
+
+        if(requestCode == EDIT_DIALOG_FRAGMENT_REQUEST_CODE){
             updateList();
             return;
         }
@@ -176,6 +183,16 @@ public class WordsListFragment extends Fragment {
                             .setNegativeButton(android.R.string.cancel, null);
                     AlertDialog dialog = builder.create();
                     dialog.show();
+                }
+            });
+
+            edit.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    EditDialogFragment editDialogFragment = EditDialogFragment.newInstance(word);
+                    editDialogFragment.setTargetFragment(WordsListFragment.this,
+                            EDIT_DIALOG_FRAGMENT_REQUEST_CODE);
+                    editDialogFragment.show(getFragmentManager(), EDIT_DIALOG_FRAGMENT);
                 }
             });
         }
