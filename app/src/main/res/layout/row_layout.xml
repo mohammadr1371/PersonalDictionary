@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="8dp"
+    android:background="#46A1A1A1"
+    app:cardBackgroundColor="#74FFC878"
+    app:cardCornerRadius="24dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="180dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/textView_title_in_row"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="#FFFFFF"
+                android:textSize="30sp"
+                android:textStyle="bold"
+                tools:text="title" />
+
+            <TextView
+                android:id="@+id/textView_meaning_in_row"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="#070000"
+                android:textSize="26sp"
+                tools:text="mean" />
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/button_edit_in_row"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:background="@drawable/edit_icon_colorful1" />
+
+        <Button
+            android:id="@+id/button_delete_in_row"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:background="@drawable/delete_icon_colorful" />
+
+        <Button
+            android:id="@+id/button_share_in_row"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="@drawable/forward_icon" />
+
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>
