@@ -76,9 +76,11 @@ public class SearchDialogFragment extends DialogFragment {
         if(WordsListFragment.LANGUAGE_FLAG == false){
             mTextViewSearchTitle.setText("SEARCH");
             mButtonBack.setText("Back");
+            mEditTextTitle.setHint("ENTER WORD");
         } else {
             mTextViewSearchTitle.setText("جستجو");
             mButtonBack.setText("بازگشت");
+            mEditTextTitle.setHint("لغت را وارد کنید");
         }
     }
 

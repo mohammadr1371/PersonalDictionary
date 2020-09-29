@@ -66,9 +66,13 @@ public class AddDialogFragment extends DialogFragment {
         if(WordsListFragment.LANGUAGE_FLAG == false){
             mTextViewAdd.setText("ADD");
             mButtonAdd.setText("Add");
+            mEditTextTitle.setHint("ENTER WORD");
+            mEditTextMeaning.setHint("ENTER MEANING");
         } else {
             mTextViewAdd.setText("افزودن");
             mButtonAdd.setText("اضافه شود");
+            mEditTextTitle.setHint("لغت را وارد کنید");
+            mEditTextMeaning.setHint("معنی را وارد کنید");
         }
     }
     private void setListeners(){

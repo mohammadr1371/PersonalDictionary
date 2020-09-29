@@ -31,7 +31,6 @@
             android:layout_marginTop="8dp"
             android:ems="10"
             android:gravity="start|top"
-            android:hint="ENTER WORD"
             android:inputType="textMultiLine" />
 
     </com.google.android.material.textfield.TextInputLayout>
@@ -49,7 +48,6 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:gravity="start|top"
-            android:hint="ENTER MEANING"
             android:inputType="textMultiLine" />
 
     </com.google.android.material.textfield.TextInputLayout>
