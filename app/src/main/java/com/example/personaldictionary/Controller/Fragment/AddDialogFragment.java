@@ -13,6 +13,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.personaldictionary.Database.AppDatabase;
@@ -24,6 +25,7 @@ public class AddDialogFragment extends DialogFragment {
     private EditText mEditTextTitle;
     private EditText mEditTextMeaning;
     private Button mButtonAdd;
+    private TextView mTextViewAdd;
     private AppDatabase appDatabase;
 
     public static AddDialogFragment newInstance() {
@@ -47,6 +49,7 @@ public class AddDialogFragment extends DialogFragment {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         builder.setView(view);
         findViews(view);
+        initView();
         setListeners();
         AlertDialog dialog = builder.create();
         return dialog;
@@ -56,6 +59,17 @@ public class AddDialogFragment extends DialogFragment {
         mEditTextTitle = view.findViewById(R.id.editText_title_in_add_dialog);
         mEditTextMeaning = view.findViewById(R.id.editText_meaning_in_add_dialog);
         mButtonAdd = view.findViewById(R.id.button_add_in_add_dialog);
+        mTextViewAdd = view.findViewById(R.id.textView_title_in_add_dialog);
+    }
+
+    private void initView(){
+        if(WordsListFragment.LANGUAGE_FLAG == false){
+            mTextViewAdd.setText("ADD");
+            mButtonAdd.setText("Add");
+        } else {
+            mTextViewAdd.setText("افزودن");
+            mButtonAdd.setText("اضافه شود");
+        }
     }
     private void setListeners(){
         mButtonAdd.setOnClickListener(new View.OnClickListener() {

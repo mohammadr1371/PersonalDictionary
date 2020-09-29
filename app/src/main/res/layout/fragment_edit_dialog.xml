@@ -10,7 +10,7 @@
     tools:context=".Controller.Fragment.EditDialogFragment">
 
     <TextView
-        android:id="@+id/textView4"
+        android:id="@+id/textView_title_in_edit_dialog"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="EDIT"

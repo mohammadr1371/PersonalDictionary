@@ -2,6 +2,7 @@ package com.example.personaldictionary.Controller.Fragment;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.ClipData;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -39,8 +40,14 @@ public class WordsListFragment extends Fragment {
     public static final int ADD_DIALOG_FRAGMENT_REQUEST_CODE = 1;
     public static final int EDIT_DIALOG_FRAGMENT_REQUEST_CODE = 2;
     public static final String EDIT_DIALOG_FRAGMENT = "edit dialog fragment";
+    public static boolean LANGUAGE_FLAG = false;
+
     private iWordDatabaseDao mIWordDatabaseDao;
     private RecyclerView mRecyclerView;
+    private Button mButtonLanguage;
+    private TextView mTextViewAppTitle;
+    private Menu mMenu;
+
 
     public static WordsListFragment newInstance() {
         WordsListFragment fragment = new WordsListFragment();
@@ -61,6 +68,8 @@ public class WordsListFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_words_list, container, false);
         findViews(view);
+        initView();
+        setListener();
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         updateList();
         return  view;
@@ -81,6 +90,18 @@ public class WordsListFragment extends Fragment {
 
     public void findViews(View view){
         mRecyclerView = view.findViewById(R.id.word_recycler_view);
+        mButtonLanguage = view.findViewById(R.id.button_language);
+        mTextViewAppTitle = view.findViewById(R.id.textView_app_title);
+    }
+
+    public void initView(){
+        if(LANGUAGE_FLAG == false){
+            mTextViewAppTitle.setText("Raeis Dictionary");
+            mButtonLanguage.setText("En");
+        } else {
+            mTextViewAppTitle.setText("دیکشنری رئیس");
+            mButtonLanguage.setText("Pr");
+        }
     }
 
     @Override
@@ -105,6 +126,21 @@ public class WordsListFragment extends Fragment {
     @Override
     public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
         inflater.inflate(R.menu.menu_layout, menu);
+        mMenu = menu;
+        initMenu(menu);
+    }
+
+    private void initMenu(@NonNull Menu menu) {
+        if(LANGUAGE_FLAG == false) {
+            menu.findItem(R.id.add_item_in_menu).setTitle("Add");
+            menu.findItem(R.id.search_item_in_menu).setTitle("Search");
+            menu.findItem(R.id.delete_item_in_menu).setTitle("Delete all");
+        } else {
+            menu.findItem(R.id.add_item_in_menu).setTitle("افزودن");
+            menu.findItem(R.id.search_item_in_menu).setTitle("جستجو");
+            menu.findItem(R.id.delete_item_in_menu).setTitle("پاک کردن همه");
+
+        }
     }
 
     @Override
@@ -142,6 +178,22 @@ public class WordsListFragment extends Fragment {
             return super.onOptionsItemSelected(item);
         }
         return false;
+    }
+
+    private void setListener(){
+        mButtonLanguage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                AppCompatActivity activity = (AppCompatActivity) getActivity();
+                if(LANGUAGE_FLAG == false){
+                    LANGUAGE_FLAG = true;
+                } else {
+                    LANGUAGE_FLAG = false;
+                }
+                initView();
+                initMenu(mMenu);
+            }
+        });
     }
 
     private class WordViewHolder extends RecyclerView.ViewHolder{

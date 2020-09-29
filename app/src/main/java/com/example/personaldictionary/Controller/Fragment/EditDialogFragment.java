@@ -15,6 +15,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.personaldictionary.Database.AppDatabase;
@@ -28,6 +29,7 @@ public class EditDialogFragment extends DialogFragment {
     private AppDatabase mAppDatabase;
     private Word mWord;
 
+    private TextView mTextViewEdit;
     private EditText mEditTextTitle;
     private EditText mEditTextMeaning;
     private Button mButtonDone;
@@ -67,11 +69,21 @@ public class EditDialogFragment extends DialogFragment {
         mEditTextMeaning = view.findViewById(R.id.editText_meaning_in_edit_dialog);
         mButtonDone = view.findViewById(R.id.button_done_in_edit_dialog);
         mButtonCancel = view.findViewById(R.id.button_cancel_in_edit_dialog);
+        mTextViewEdit = view.findViewById(R.id.textView_title_in_edit_dialog);
     }
 
     private void initView() {
         mEditTextTitle.setText(mWord.getTitle());
         mEditTextMeaning.setText(mWord.getMeaning());
+        if(WordsListFragment.LANGUAGE_FLAG == false){
+            mTextViewEdit.setText("EDIT");
+            mButtonDone.setText("done");
+            mButtonCancel.setText("cancel");
+        } else {
+            mTextViewEdit.setText("اصلاح");
+            mButtonDone.setText("اعمال");
+            mButtonCancel.setText("بازگشت");
+        }
     }
 
     private void setListeners() {

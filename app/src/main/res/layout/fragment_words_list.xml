@@ -9,16 +9,32 @@
     android:padding="8dp"
     tools:context=".Controller.Fragment.WordsListFragment">
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:background="@drawable/title_form"
-        android:text="Raeis Dictionary"
-        android:textColor="#F8F5F5"
-        android:textSize="30sp"
-        android:textStyle="bold" />
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/button_language"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="@drawable/button_language"
+            android:textColor="#FFFFFF"
+            android:textSize="20sp"
+            tools:text="EN" />
+
+        <TextView
+            android:id="@+id/textView_app_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginLeft="35dp"
+            android:background="@drawable/title_form"
+            android:text="Raeis Dictionary"
+            android:textColor="#F8F5F5"
+            android:textSize="30sp"
+            android:textStyle="bold" />
+    </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/word_recycler_view"

@@ -33,6 +33,7 @@ public class SearchDialogFragment extends DialogFragment {
     private ImageButton mImageButtonSearch;
     private RecyclerView mRecyclerViewSearch;
     private Button mButtonBack;
+    private TextView mTextViewSearchTitle;
     private ArrayList<Word> mWords;
 
     public static SearchDialogFragment newInstance(ArrayList<Word> words) {
@@ -57,6 +58,7 @@ public class SearchDialogFragment extends DialogFragment {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         builder.setView(view);
         findViews(view);
+        initView();
         setListeners();
         AlertDialog dialog = builder.create();
         return dialog;
@@ -67,6 +69,17 @@ public class SearchDialogFragment extends DialogFragment {
         mImageButtonSearch = view.findViewById(R.id.imageButton_search_in_search_dialog);
         mRecyclerViewSearch = view.findViewById(R.id.recyclerView_in_search_dialog);
         mButtonBack = view.findViewById(R.id.button_back_in_search_dialog);
+        mTextViewSearchTitle = view.findViewById(R.id.textView_search_title);
+    }
+
+    private void initView(){
+        if(WordsListFragment.LANGUAGE_FLAG == false){
+            mTextViewSearchTitle.setText("SEARCH");
+            mButtonBack.setText("Back");
+        } else {
+            mTextViewSearchTitle.setText("جستجو");
+            mButtonBack.setText("بازگشت");
+        }
     }
 
     private void setListeners(){
