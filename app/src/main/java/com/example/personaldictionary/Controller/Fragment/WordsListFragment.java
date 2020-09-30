@@ -82,10 +82,18 @@ public class WordsListFragment extends Fragment {
     }
 
     private void updateList() {
-        AppCompatActivity activity = (AppCompatActivity) getActivity();
-        activity.getSupportActionBar().setSubtitle(String.valueOf(mIWordDatabaseDao.getWordsList().size())+" Words");
+        updateActionbarSubtitle();
         WordAdapter wordAdapter = new WordAdapter(mIWordDatabaseDao.getWordsList());
         mRecyclerView.setAdapter(wordAdapter);
+    }
+
+    private void updateActionbarSubtitle() {
+        AppCompatActivity activity = (AppCompatActivity) getActivity();
+        if(LANGUAGE_FLAG == false) {
+            activity.getSupportActionBar().setSubtitle(String.valueOf(mIWordDatabaseDao.getWordsList().size()) + " Words ");
+        } else {
+            activity.getSupportActionBar().setSubtitle(String.valueOf(mIWordDatabaseDao.getWordsList().size()) + " لغت ");
+        }
     }
 
     public void findViews(View view){
@@ -184,7 +192,6 @@ public class WordsListFragment extends Fragment {
         mButtonLanguage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                AppCompatActivity activity = (AppCompatActivity) getActivity();
                 if(LANGUAGE_FLAG == false){
                     LANGUAGE_FLAG = true;
                 } else {
@@ -192,6 +199,7 @@ public class WordsListFragment extends Fragment {
                 }
                 initView();
                 initMenu(mMenu);
+                updateActionbarSubtitle();
             }
         });
     }
